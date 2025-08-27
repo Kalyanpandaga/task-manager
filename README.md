@@ -1,6 +1,6 @@
 # Internship Task Management Portal
 
-This is a full-stack Kanban-style task management system designed for organizations to assign, track, and manage tasks for interns and employees. It features distinct roles for Managers and Interns, a drag-and-drop interface, and a clean, responsive design.
+This is a full-stack Kanban-style task management system designed for organizations to assign, track, and manage tasks for interns and employees. It features distinct roles for Managers and Interns, a drag-and-drop interface, task prioritization, filtering options, and a clean, responsive design.
 
 **Live Demo:** [Task Manager Demo](https://task-manager-jade-five.vercel.app/)
 **GitHub Repository:** [https://github.com/Kalyanpandaga/task-manager](https://github.com/Kalyanpandaga/task-manager)
@@ -15,7 +15,9 @@ This is a full-stack Kanban-style task management system designed for organizati
 - **User Management:** Create new user accounts (both Managers and Interns).
 - **Full Task Control:** Create, read, update, and delete any task in the system.
 - **Task Assignment:** Assign or reassign tasks to any intern.
+- **Task Priorities:** Set priority levels (Low, Medium, High) for tasks.
 - **Global View:** View all tasks across the organization on a unified Kanban board.
+- **Filtering:** Filter tasks by user, deadline, or priority.
 - **Dashboard Access:** Access a dedicated page to add new users to the platform.
 
 ### Intern Features
@@ -23,7 +25,46 @@ This is a full-stack Kanban-style task management system designed for organizati
 - **Authentication:** Secure login system.
 - **Personalized Dashboard:** View only the tasks that are specifically assigned to them.
 - **Status Updates:** Update the status of their assigned tasks by dragging and dropping cards between columns (To Do, In Progress, Done).
-- **Task Details:** View the full details of their assigned tasks, including title, description, and deadline.
+- **Task Details:** View the full details of their assigned tasks, including title, description, deadline, and priority.
+- **Filtering:** Apply filters to focus on tasks by deadline or priority.
+
+### Recruiter Testing Convenience
+
+On the **login page**, recruiters can quickly test the app using **autofill buttons**:
+
+- **Get Manager Creds** → autofills:
+
+  - Email: `alice.manager@example.com`
+  - Password: `Manager@123`
+
+- **Get Intern Creds** → autofills:
+
+  - Email: `dana.intern@example.com`
+  - Password: `Intern@123`
+
+---
+
+## 🖼️ Screenshots
+
+### Login Page with Test Credentials
+
+![Login Page Screenshot](./screenshots/login.png)
+
+### Manager Kanban Board (All Tasks)
+
+![Kanban Board Screenshot](./screenshots/manager-board.png)
+
+### Task Creation / Editing (Only Manager)
+
+![Task Form Screenshot](./screenshots/task-form.png)
+
+### User Creation (Only Manager)
+
+![User Creation Page Screenshot](./screenshots/create-user.png)
+
+### Intern Dashboard (Assigned Tasks Only)
+
+![Intern Board Screenshot](./screenshots/intern-board.png)
 
 ---
 
@@ -105,12 +146,12 @@ To populate the database with initial sample data (users and tasks), run the see
 npm run seed
 ```
 
-This will create two managers and two interns. You can use the following credentials to log in:
+This will create managers and interns. You can also test login quickly using the login page buttons:
 
 - **Manager Email:** `alice.manager@example.com`
   **Password:** `Manager@123`
 
-- **Intern Email:** `charlie.intern@example.com`
+- **Intern Email:** `dana.intern@example.com`
   **Password:** `Intern@123`
 
 ### 4. Start the Backend Server
@@ -146,7 +187,7 @@ npm run dev
 
 The React application will start, and you can access it in your browser, typically at `http://localhost:3000`.
 
-You're all set! You can now log in using the seed credentials and test the application.
+You're all set! You can now log in using the provided credentials and test the application.
 
 ---
 
@@ -163,5 +204,18 @@ The backend exposes the following REST API endpoints:
 | GET    | /api/tasks                 | Get tasks (all for Manager, assigned for Intern). | Private |
 | GET    | /api/tasks/\:taskId        | Get details for a single task.                    | Private |
 | POST   | /api/tasks/create          | Create a new task.                                | Manager |
-| PUT    | /api/tasks/update/\:taskId | Update an existing task.                          | Private |
+| PUT    | /api/tasks/update/\:taskId | Update an existing task (status, priority, etc.). | Private |
 | DELETE | /api/tasks/delete/\:taskId | Delete a task.                                    | Manager |
+
+---
+
+## 📌 Highlights for Recruiters
+
+- **Quick login testing buttons** on login page → No need to type credentials manually.
+- **Task Priority Levels** with color-coded badges for easy visibility.
+- **Filters** by User, Deadline, and Priority for better task tracking.
+- Assign and re-assign multiple users to single task
+- Clean, responsive **UI/UX** with drag-and-drop board.
+- Screenshots included for a visual walkthrough.
+
+---

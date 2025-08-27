@@ -8,6 +8,10 @@ export default function Layout() {
       <main>
         <Outlet />
       </main>
+      <footer className="bg-white border-t border-gray-200 py-4 text-center text-sm text-gray-600">
+        © {new Date().getFullYear()} AGH Internship Task Portal · All Rights
+        Reserved
+      </footer>
     </div>
   );
 }

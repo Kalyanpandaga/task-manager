@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Login() {
-  const [email, setEmail] = useState("alice.manager@example.com");
-  const [password, setPassword] = useState("Manager@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useAuth();
   const nav = useNavigate();
@@ -23,15 +23,28 @@ export default function Login() {
     }
   }
 
+  function fillManagerCreds() {
+    setEmail("alice.manager@example.com");
+    setPassword("Manager@123");
+  }
+
+  function fillInternCreds() {
+    setEmail("dana.intern@example.com");
+    setPassword("Intern@123");
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md">
+        {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
           <p className="text-gray-600 mt-2">
             Sign in to access the Task Management Portal.
           </p>
         </div>
+
+        {/* Card */}
         <div className="bg-white p-8 rounded-lg shadow-md border border-gray-200">
           <form onSubmit={onSubmit} className="space-y-6">
             <div>
@@ -62,6 +75,27 @@ export default function Login() {
               Sign in
             </button>
           </form>
+
+          {/* Recruiter Testing Section */}
+          <div className="mt-8">
+            <p className="text-center text-gray-500 text-sm mb-3">
+              Test with below credentials
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={fillManagerCreds}
+                className="w-full sm:w-1/2 px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium transition"
+              >
+                Get Manager Creds
+              </button>
+              <button
+                onClick={fillInternCreds}
+                className="w-full sm:w-1/2 px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium transition"
+              >
+                Get Intern Creds
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
