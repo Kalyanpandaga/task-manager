@@ -26,14 +26,12 @@ export const login = async (req, res) => {
     const token = await user.getJwt();
     res.status(200).json({
       user: {
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-        },
-        token,
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
       },
+      token,
     });
   } catch (err) {
     return errorResponse(res, 500, "LOGIN_ERROR", err.message);

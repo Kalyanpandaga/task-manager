@@ -5,9 +5,7 @@ export const createTask = async (req, res) => {
   try {
     const { title, description, deadline, status, assignedUsers } = req.body;
 
-    // Normalize deadline to store date only
     const deadlineDate = new Date(deadline);
-    deadlineDate.setHours(0, 0, 0, 0);
 
     const task = await Task.create({
       title,
@@ -133,6 +131,11 @@ export const updateTask = async (req, res) => {
       if (allowedFields.includes(key)) {
         safeUpdate[key] = updateData[key];
       }
+    }
+
+    if (safeUpdate.deadline) {
+      const deadlineDate = new Date(safeUpdate.deadline);
+      safeUpdate.deadline = deadlineDate;
     }
 
     const updatedTask = await Task.findByIdAndUpdate(taskId, safeUpdate, {

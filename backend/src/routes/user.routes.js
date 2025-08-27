@@ -1,5 +1,9 @@
 import express from "express";
-import { createUser } from "../controllers/user.controller.js";
+import {
+  createUser,
+  getCurrentUser,
+  getUsers,
+} from "../controllers/user.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 import { hasRole } from "../middlewares/role.middleware.js";
 import validateRequest from "../middlewares/validate.middleware.js";
@@ -14,5 +18,8 @@ router.post(
   validateRequest(validateRegisterData),
   createUser
 );
+
+router.get("/me", authMiddleware, getCurrentUser);
+router.get("", authMiddleware, hasRole(["MANAGER"]), getUsers);
 
 export default router;

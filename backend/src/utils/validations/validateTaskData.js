@@ -21,11 +21,8 @@ export const validateCreateTaskData = (taskData) => {
     throw new Error("Status must be one of 'TODO', 'IN_PROGRESS', 'DONE'");
   }
 
-  // Check if deadline is not in the past (today is acceptable)
   const deadlineDate = new Date(deadline);
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // compare date only
-  deadlineDate.setHours(0, 0, 0, 0);
 
   if (deadlineDate < today) {
     throw new Error("Deadline cannot be in the past");
@@ -74,8 +71,6 @@ export const validateUpdateTaskData = (taskData) => {
 
       const deadlineDate = new Date(value);
       const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      deadlineDate.setHours(0, 0, 0, 0);
 
       if (deadlineDate < today) {
         throw new Error("Deadline cannot be in the past");
