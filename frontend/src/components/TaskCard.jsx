@@ -74,12 +74,25 @@ export default function TaskCard({ task, onEdit, onDelete }) {
         </div>
       </div>
 
-      <div className="border-t border-gray-100 pt-3">
-        <h5 className="text-xs font-medium text-gray-500 mb-1">Due Date:</h5>
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <Calendar size={14} />
-          <span>{formatDeadline(task.deadline)}</span>
+      <div className="flex justify-between items-center mt-2">
+        <div className="border-t border-gray-100 pt-3">
+          <h5 className="text-xs font-medium text-gray-500 mb-1">Due Date:</h5>
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Calendar size={14} />
+            <span>{formatDeadline(task.deadline)}</span>
+          </div>
         </div>
+        <span
+          className={`text-xs font-bold px-2 py-1 rounded-full ${
+            task.priority === "HIGH"
+              ? "bg-red-100 text-red-800"
+              : task.priority === "MEDIUM"
+              ? "bg-yellow-100 text-yellow-800"
+              : "bg-green-100 text-green-800"
+          }`}
+        >
+          {task.priority}
+        </span>
       </div>
     </div>
   );

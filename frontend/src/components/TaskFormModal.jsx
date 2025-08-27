@@ -12,6 +12,7 @@ export default function TaskFormModal({ initial, onClose }) {
   const [description, setDescription] = useState(initial?.description || "");
   const [deadline, setDeadline] = useState(initial?.deadline || "");
   const [status, setStatus] = useState(initial?.status || "TODO");
+  const [priority, setPriority] = useState(initial?.priority || "MEDIUM");
   const [assignedUsers, setAssignedUsers] = useState(
     initial?.assignedUsers?.map((u) => ({
       value: u._id,
@@ -54,6 +55,7 @@ export default function TaskFormModal({ initial, onClose }) {
       title,
       description,
       status,
+      priority,
       deadline,
       assignedUsers: assignedUsers.map((u) => u.value),
     };
@@ -114,6 +116,18 @@ export default function TaskFormModal({ initial, onClose }) {
                 <option value="TODO">To Do</option>
                 <option value="IN_PROGRESS">In Progress</option>
                 <option value="DONE">Done</option>
+              </select>
+            </div>
+            <div>
+              <label className="block mb-1 text-sm font-medium">Priority</label>
+              <select
+                className="input"
+                value={priority}
+                onChange={(e) => setPriority(e.target.value)}
+              >
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
               </select>
             </div>
           </div>
