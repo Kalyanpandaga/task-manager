@@ -7,14 +7,13 @@ export const createTask = async (req, res) => {
       req.body;
 
     const deadlineDate = new Date(deadline);
-    priority = priority ? priority : "MEDIUM";
 
     const task = await Task.create({
       title,
       description,
       deadline: deadlineDate,
       status,
-      priority,
+      priority: priority ? priority : "MEDIUM",
       assignedUsers,
       createdBy: req.user._id,
     });

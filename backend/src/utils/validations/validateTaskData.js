@@ -41,6 +41,7 @@ export const validateUpdateTaskData = (taskData) => {
     "deadline",
     "assignedUsers",
     "status",
+    "priority",
   ];
   const updateFields = Object.keys(taskData);
 
