@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add consistent base styles for components */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-semibold text-sm shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-gray-800 text-white hover:bg-gray-700 focus:ring-gray-800;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-500;
+  }
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-800 focus:border-gray-800 sm:text-sm;
+  }
+  .card {
+    @apply bg-white rounded-lg shadow-md border border-gray-200;
+  }
+}
