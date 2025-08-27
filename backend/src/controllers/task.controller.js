@@ -3,15 +3,18 @@ import { errorResponse } from "../utils/errorResponse.js";
 
 export const createTask = async (req, res) => {
   try {
-    const { title, description, deadline, status, assignedUsers } = req.body;
+    const { title, description, deadline, status, assignedUsers, priority } =
+      req.body;
 
     const deadlineDate = new Date(deadline);
+    priority = priority ? priority : "MEDIUM";
 
     const task = await Task.create({
       title,
       description,
       deadline: deadlineDate,
       status,
+      priority,
       assignedUsers,
       createdBy: req.user._id,
     });
@@ -124,6 +127,7 @@ export const updateTask = async (req, res) => {
       "description",
       "deadline",
       "status",
+      "priority",
       "assignedUsers",
     ];
     const safeUpdate = {};

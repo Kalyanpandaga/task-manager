@@ -23,6 +23,11 @@ const taskSchema = new mongoose.Schema(
       enum: ["TODO", "IN_PROGRESS", "DONE"],
       default: "TODO",
     },
+    priority: {
+      type: String,
+      enum: ["LOW", "MEDIUM", "HIGH"],
+      default: "MEDIUM",
+    },
     assignedUsers: [
       {
         type: mongoose.Schema.Types.ObjectId,

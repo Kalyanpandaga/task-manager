@@ -2,8 +2,7 @@
 
 This is a full-stack Kanban-style task management system designed for organizations to assign, track, and manage tasks for interns and employees. It features distinct roles for Managers and Interns, a drag-and-drop interface, and a clean, responsive design.
 
-**Live Demo:** [Task Manager Demo](https://task-manager-demo-link.vercel.app/) _(Note: This is a placeholder URL)_
-
+**Live Demo:** [Task Manager Demo](https://task-manager-jade-five.vercel.app/)
 **GitHub Repository:** [https://github.com/Kalyanpandaga/task-manager](https://github.com/Kalyanpandaga/task-manager)
 
 ---

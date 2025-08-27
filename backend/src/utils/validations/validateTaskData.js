@@ -1,5 +1,6 @@
 export const validateCreateTaskData = (taskData) => {
-  const { title, description, deadline, assignedUsers, status } = taskData;
+  const { title, description, deadline, assignedUsers, status, priority } =
+    taskData;
 
   if (!title || title.length < 3 || title.length > 100) {
     throw new Error("Task title must be between 3 and 100 characters");
@@ -13,6 +14,13 @@ export const validateCreateTaskData = (taskData) => {
     throw new Error("A valid deadline date is required");
   }
 
+  const deadlineDate = new Date(deadline);
+  const today = new Date();
+
+  if (deadlineDate < today) {
+    throw new Error("Deadline cannot be in the past");
+  }
+
   if (!Array.isArray(assignedUsers) || assignedUsers.length === 0) {
     throw new Error("At least one assigned user (intern/employee) is required");
   }
@@ -21,11 +29,8 @@ export const validateCreateTaskData = (taskData) => {
     throw new Error("Status must be one of 'TODO', 'IN_PROGRESS', 'DONE'");
   }
 
-  const deadlineDate = new Date(deadline);
-  const today = new Date();
-
-  if (deadlineDate < today) {
-    throw new Error("Deadline cannot be in the past");
+  if (priority && !["LOW", "MEDIUM", "HIGH"].includes(priority)) {
+    throw new Error("Priority must be one of 'LOW', 'MEDIUM', 'HIGH'");
   }
 };
 
@@ -88,6 +93,12 @@ export const validateUpdateTaskData = (taskData) => {
     if (field === "status") {
       if (!["TODO", "IN_PROGRESS", "DONE"].includes(value)) {
         throw new Error("Status must be one of 'TODO', 'IN_PROGRESS', 'DONE'");
+      }
+    }
+
+    if (field === "priority") {
+      if (!["LOW", "MEDIUM", "HIGH"].includes(value)) {
+        throw new Error("Priority must be one of 'LOW', 'MEDIUM', 'HIGH'");
       }
     }
   }
